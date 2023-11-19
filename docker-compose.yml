@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  sshd:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "12222:22"
+      - "8888:8888"
+    volumes:
+      - ./scripts/entrypoint.sh:/entrypoint.sh
+      - ./config/sshd_config:/etc/ssh/sshd_config
+      - ./keys/authorized_keys:/conf/authorized_keys
+      - ./keys/id_rsa:/etc/ssh/ssh_host_rsa_key

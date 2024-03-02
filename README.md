@@ -4,7 +4,9 @@ Use sshd only for remote port forwarding
 
 ## Testing
 
-Generate keys.
+![sample diagram](uml/sample.png)
+
+Generate keys used by as the host key of the docker container.
 
 ```bash
 cd keys
@@ -13,7 +15,7 @@ sudo chown root:root id_*
 sudo chmod 600 id_*
 ```
 
-Add your authorized_keys
+Add your authorized_keys to allow sshd in the docker container to login.h
 
 ```bash
 cp ~/.ssh/id_rsa.pub keys/authorized_keys
@@ -29,7 +31,7 @@ docker compose -f docker-compose.yml up
 Start local http server 8001
 
 ```bash
-python3 -m http.server
+python3 -m http.server --bind localhost 8001
 ```
 
 Confirm that local http server works

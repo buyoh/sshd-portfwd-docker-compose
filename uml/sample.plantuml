@@ -1,0 +1,15 @@
+@startuml
+
+frame local {
+rectangle "http.server\n:8001" as httpserver
+}
+frame docker {
+rectangle "sshd" as sshd
+}
+rectangle "curl" as curl
+
+local -> sshd: ssh
+httpserver <- sshd: "Reverse SSH tunneling\n:8001<-:8888"
+sshd <- curl: http://localhost:8888
+
+@enduml
